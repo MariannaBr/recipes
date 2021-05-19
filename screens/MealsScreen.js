@@ -21,3 +21,5 @@ const styles = StyleSheet.create({
     //color: Colors.primaryColor,
   },
 });
+
+export default MealsScreen
