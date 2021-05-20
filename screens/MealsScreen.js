@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { Colors } from "../constants/Colors";
 
 const MealsScreen = (props) => {
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>Meals</Text>
+      <Button title="Details" onPress={() => props.navigation.navigate("MealDetail")} />
     </View>
   );
 };
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    //color: Colors.primaryColor,
+    color: Colors.primaryColor,
   },
 });
 

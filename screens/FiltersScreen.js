@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { Colors } from "../constants/Colors";
 
 const FiltersScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>Filters</Text>
+      <Text style={styles.title}>Filtre</Text>
+      <Button title="zobraz" onPress={() => props.navigation.navigate("Meals")} />
     </View>
   );
 };
