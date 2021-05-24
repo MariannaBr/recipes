@@ -25,26 +25,13 @@ const FiltersStack = createStackNavigator();
 
 export const FiltersNavigator = () => {
   return (
-    <FiltersStack.Navigator initialRouteName="Home">
-      {/* <FiltersStack.Screen name="Home" component={HomeScreen} /> */}
+    <FiltersStack.Navigator initialRouteName="Filters">
       <FiltersStack.Screen name="Filters" component={FiltersScreen} />
       <FiltersStack.Screen name="Meals" component={MealsScreen} options={{title: "Vybrate jedla"}} />
       <FiltersStack.Screen name="MealDetail" component={MealDetailScreen} />
     </FiltersStack.Navigator>
   );
 };
-
-// const MealsDrawer = createDrawerNavigator();
-
-// export const MealNavigator = () => {
-//   return (
-//     <MealsDrawer.Navigator>
-//       <MealsDrawer.Screen name="SaltMeals" component={SaltMealsNavigator} />
-//       <MealsDrawer.Screen name="SweetMeals" component={SweetMealsNavigator} />
-//       <MealsDrawer.Screen name="MealsFilters" component={FiltersNavigator} />
-//     </MealsDrawer.Navigator>
-//   );
-// };
 
 const Tabs = createBottomTabNavigator();
 
@@ -71,21 +58,14 @@ export const BottomTabNavigator = () => {
   );
 };
 
-// const MainNavigator = createDrawerNavigator({
-//   SaltMeals: {
-//     screen: BottomTabNavigator,
-//     navigationOptions: {
-//       drawerLabel: "Slane jedla",
-//     },
-//   },
-//   SweetMeals: {
-//     screen: SweetMealsNavigator,
-//     navigationOptions: {
-//       drawerLabel: "Sladke jedla",
-//     },
-//   },
-//   Filters: FiltersNavigator,
-//   navigationOptions: {
-//     drawerLabel: "Filtre",
-//   },
-// });
+// const MealsDrawer = createDrawerNavigator();
+
+// export const MealNavigator = () => {
+//   return (
+//     <MealsDrawer.Navigator>
+//       <MealsDrawer.Screen name="SaltMeals" component={SaltMealsNavigator} />
+//       <MealsDrawer.Screen name="SweetMeals" component={SweetMealsNavigator} />
+//       <MealsDrawer.Screen name="MealsFilters" component={FiltersNavigator} />
+//     </MealsDrawer.Navigator>
+//   );
+// };

@@ -1,12 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { Colors } from "../constants/Colors";
+import MealList from "../Components/MealList";
+import { MEALS } from "../data/RecipesData";
 
 const MealsScreen = (props) => {
+  const type = props.isSalt;
+
+
+  //const MealsToShow = MEALS.filter(meal => meal.isSalt == true)
+
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>Meals</Text>
-      <Button title="Details" onPress={() => props.navigation.navigate("MealDetail")} />
+      <MealList listData={MEALS} />
     </View>
   );
 };
@@ -23,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MealsScreen
+export default MealsScreen;
