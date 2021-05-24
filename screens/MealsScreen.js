@@ -8,11 +8,11 @@ const MealsScreen = (props) => {
   const type = props.isSalt;
 
 
-  //const MealsToShow = MEALS.filter(meal => meal.isSalt == true)
+  const MealsToShow = MEALS.filter(meal => meal.isSalt == true)
 
   return (
     <View style={styles.screen}>
-      <MealList listData={MEALS} />
+      <MealList listData={MealsToShow} />
     </View>
   );
 };

@@ -6,11 +6,11 @@ import {
   Text,
   ImageBackground,
 } from "react-native";
-import Colors from "../constants/Colors";
+import { Colors } from "../constants/Colors";
 
 const MealItem = (props) => {
   return (
-    <View style={StyleSheet.mealItem}>
+    <View style={styles.mealItem}>
       <TouchableOpacity onPress={props.onSelectMeal} >
         <View>
           <View style={styles.imageContainer}>
@@ -20,9 +20,9 @@ const MealItem = (props) => {
               </View>
             </ImageBackground>
           </View>
-          <View>
-            <Text>{props.duration}</Text>
-            <Text>{props.complexity}</Text>
+          <View style={styles.propsContainer}>
+            <Text style={styles.props}>{props.duration}</Text>
+            <Text style={styles.props}>{props.complexity}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -32,25 +32,25 @@ const MealItem = (props) => {
 
 const styles = StyleSheet.create({
   mealItem: {
-    height: 300,
-    width: "100%",
-    //backgroundColor: Colors.thirdColor,
-    borderRadius: 15,
+    height: 250,
+    width: "95%",
+    borderRadius: 20,
     overflow: "hidden",
-    marginVertical: 10,
+    marginVertical: 20,
   },
   imageContainer: {
     flexDirection: "row",
-    height: '85%'
+    justifyContent: 'center',
+    height: '90%',
   },
   bgImage: {
-    width: '100%',
+    width: '103%',
     height: '100%',
     justifyContent: 'flex-end'
   },
   titleContainer: {
-    //backgroundColor: Colors.secondaryColor,
-    opacity: 0.3,
+    backgroundColor: Colors.primaryColor,
+    opacity: 0.6,
     paddingHorizontal: 10,
     paddingVertical: 5
   },
@@ -58,7 +58,18 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'white'
+    color: 'black'
+  },
+  propsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    height: "10%",
+    paddingVertical: 3,
+    backgroundColor: Colors.secondaryColor
+  },
+  props: {
+    fontSize: 15,
+    color: "black"
   }
 });
 

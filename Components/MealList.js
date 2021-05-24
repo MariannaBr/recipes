@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, FlatList, Text } from "react-native";
-import { MEALS } from "../data/RecipesData"
 
 import MealItem from "./MealItem";
 
@@ -19,7 +18,6 @@ const MealList = (props) => {
     );
   };
 
-  console.log(MEALS.map(meal => meal.imageUrl))
 
   return (
     <View style={styles.list}>
