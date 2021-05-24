@@ -1,7 +1,5 @@
 import Meal from "../models/Meal";
 
-
-
 export const MEALS = [
   new Meal(
     "m1",

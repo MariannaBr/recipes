@@ -4,11 +4,9 @@ import { Colors } from "../constants/Colors";
 import MealList from "../Components/MealList";
 import { MEALS } from "../data/RecipesData";
 
-const MealsScreen = (props) => {
-  const type = props.isSalt;
+const MealsScreen = ({route}) => {
 
-
-  const MealsToShow = MEALS.filter(meal => meal.isSalt == true)
+  const MealsToShow = route.params?.group === "salt" ? MEALS.filter(meal => meal.isSalt == true) : MEALS.filter(meal => meal.isSalt == false)
 
   return (
     <View style={styles.screen}>

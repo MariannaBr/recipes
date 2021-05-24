@@ -1,9 +1,12 @@
 import React from "react";
 import { View, StyleSheet, FlatList, Text } from "react-native";
-
+import { useNavigation } from '@react-navigation/native'
 import MealItem from "./MealItem";
 
-const MealList = (props) => {
+const MealList = props => {
+
+  const navigation = useNavigation()
+
   const renderMealItem = ({ item }) => {
     return (
       <MealItem
@@ -11,9 +14,19 @@ const MealList = (props) => {
         image={item.imageUrl}
         duration={item.duration}
         complexity={item.complexity}
-        onSelectMeal={() => {
-          props.navigation.navigate("MealDetail");
-        }}
+        onSelectMeal={() => 
+          navigation.navigate({
+            name: "MealDetail",
+            params: {
+              title: item.title,
+              image: item.imageUrl,
+              duration: item.duration,
+              complexity: item.complexity,
+              ingredients: item.ingredients,
+              steps: item.steps
+            }
+          })
+        }
       />
     );
   };

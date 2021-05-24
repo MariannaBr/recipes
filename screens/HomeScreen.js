@@ -18,7 +18,12 @@ const HomeScreen = (props) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           activeOpacity={0.6}
-          onPress={() => props.navigation.navigate("Meals")}
+          onPress={() =>
+            props.navigation.navigate({
+              name: "Meals",
+              params: { group: "salt" },
+            })
+          }
         >
           <View style={styles.button}>
             <Text style={styles.buttonText}>slane jedla</Text>
@@ -26,7 +31,12 @@ const HomeScreen = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.6}
-          onPress={() => props.navigation.navigate("Meals")}
+          onPress={() =>
+            props.navigation.navigate({
+              name: "Meals",
+              params: { group: "sweet" },
+            })
+          }
         >
           <View style={styles.button}>
             <Text style={styles.buttonText}>sladke jedla</Text>
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   buttonContainer: {
     flexDirection: "row",
@@ -66,7 +76,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 18,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   image: {
     width: "100%",
