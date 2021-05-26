@@ -2,15 +2,24 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { Colors } from "../constants/Colors";
 import MealList from "../Components/MealList";
+import Filters from "../Components/FilterSwitch";
 import { MEALS } from "../data/RecipesData";
 
-const MealsScreen = ({route}) => {
+const MealsScreen = (props) => {
 
-  const MealsToShow = route.params?.group === "salt" ? MEALS.filter(meal => meal.isSalt == true) : MEALS.filter(meal => meal.isSalt == false)
+  const { route, navigation } = props
+
+  const MealsToShow =
+    route.params?.group === "salt"
+      ? MEALS.filter((meal) => meal.isSalt == true)
+      : MEALS.filter((meal) => meal.isSalt == false);
 
   return (
     <View style={styles.screen}>
-      <MealList listData={MealsToShow} />
+      <Filters navigation={navigation} />
+      <View style={styles.listContainer}>
+        <MealList listData={MealsToShow} />
+      </View>
     </View>
   );
 };
@@ -18,12 +27,11 @@ const MealsScreen = ({route}) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    //alignItems: "center",
   },
-  title: {
-    fontSize: 24,
-    color: Colors.primaryColor,
+  listContainer: {
+    flex: 1,
+    justifyContent: "center",
   },
 });
 

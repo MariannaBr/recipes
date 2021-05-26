@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   titleContainer: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.secondaryColor,
     opacity: 0.6,
     paddingHorizontal: 10,
     paddingVertical: 5
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     height: "10%",
     paddingVertical: 3,
-    backgroundColor: Colors.secondaryColor
+    backgroundColor: Colors.primaryColor
   },
   props: {
     fontSize: 15,

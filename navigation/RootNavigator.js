@@ -1,57 +1,114 @@
 import React from "react";
+import Ionicons from "@expo/vector-icons/Ionicons"
+import { MaterialIcons } from '@expo/vector-icons';
 import { Colors } from "../constants/Colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Text } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
-import FiltersScreen from "../screens/FiltersScreen";
 import MealsScreen from "../screens/MealsScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 
 const MealsStack = createStackNavigator();
 
-export const MealsNavigator = (props) => {
+export const MealsNavigator = () => {
   return (
-    <MealsStack.Navigator initialRouteName="Home">
-      <MealsStack.Screen name="Home" component={HomeScreen} />
-      <MealsStack.Screen name="Meals" component={MealsScreen} options={{title: props.title}} />
-      <MealsStack.Screen name="MealDetail" component={MealDetailScreen} />
+    <MealsStack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.secondaryColor,
+        },
+        headerTintColor: "white",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <MealsStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: "LRfit", headerTitleStyle: {
+          alignSelf: "center"
+        } }}
+      />
+      <MealsStack.Screen
+        name="Meals"
+        component={MealsScreen}
+        options={({ route }) => ({ title: route.params.title })}
+      />
+      <MealsStack.Screen
+        name="MealDetail"
+        component={MealDetailScreen}
+        options={({ route }) => ({ title: route.params.title })}
+      />
     </MealsStack.Navigator>
   );
 };
 
-const FiltersStack = createStackNavigator();
+const FavoriteStack = createStackNavigator();
 
-export const FiltersNavigator = () => {
+export const FavoriteNavigator = () => {
   return (
-    <FiltersStack.Navigator initialRouteName="Filters">
-      <FiltersStack.Screen name="Filters" component={FiltersScreen} />
-      <FiltersStack.Screen name="Meals" component={MealsScreen} options={{title: "Vybrate jedla"}} />
-      <FiltersStack.Screen name="MealDetail" component={MealDetailScreen} />
-    </FiltersStack.Navigator>
+    <FavoriteStack.Navigator
+      initialRouteName="Favorites"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.secondaryColor,
+        },
+        headerTintColor: "white",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <FavoriteStack.Screen
+        name="Meals"
+        component={MealsScreen}
+        options={({ route }) => ({ title: route.params.title })}
+      />
+      <FavoriteStack.Screen name="MealDetail" component={MealDetailScreen} />
+    </FavoriteStack.Navigator>
   );
 };
 
 const Tabs = createBottomTabNavigator();
 
 export const BottomTabNavigator = () => {
+
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator screenOptions={({route}) => ({
+      tabBarIcon: ({focused}) => {
+        let iconName
+        let colorName
+
+        if (route.name === "Recipes") {
+          iconName = "food-bank"
+          colorName = focused ? Colors.secondaryColor : "gray"
+        } else if (route.name === "Favorites") {
+          iconName = "favorite"
+          colorName = focused ? Colors.secondaryColor : "gray"
+        }
+        return <MaterialIcons name={iconName} size={34} color={colorName} />
+      }
+    })
+    } tabBarOptions={{
+      activeTintColor: Colors.secondaryColor,
+      inactiveTintColor: "gray"
+    }}>
       <Tabs.Screen
         name="Recipes"
         component={MealsNavigator}
         options={{
-          tabBarColor: Colors.secondaryColor,
           tabBarLabel: "Recepty",
+          fontWeight: "bold"
         }}
       />
       <Tabs.Screen
-        name="MealsFilters"
-        component={FiltersNavigator}
+        name="Favorites"
+        component={FavoriteNavigator}
         options={{
-          tabBarColor: Colors.secondaryColor,
-          tabBarLabel: "Filtre",
+          tabBarLabel: "Obľúbené",
         }}
       />
     </Tabs.Navigator>

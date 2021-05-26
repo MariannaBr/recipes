@@ -1,28 +1,41 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Colors } from "../constants/Colors";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const MealDetailScreen = ({ route }) => {
+
+  const [isFavorite, SetIsFavorite] = useState(false)
+  let iconName
+  iconName = isFavorite ? "favorite" : "favorite-border"
+
   return (
     <ScrollView>
+      <Image source={route.params?.image} style={styles.image} />
       <View style={styles.screen}>
-        <Image source={route.params?.image} style={styles.image} />
         <Text style={styles.title}>{route.params?.title}</Text>
       </View>
       <View style={styles.detialsContainer}>
         <Text>{route.params?.duration}</Text>
         <Text>{route.params?.complexity}</Text>
+        <TouchableOpacity onPress={() => SetIsFavorite(!isFavorite)}>
+          <MaterialIcons name={iconName} size={30} color={Colors.secondaryColor} />
+        </TouchableOpacity>
       </View>
       <View style={styles.ingredientsContainer}>
         <Text style={styles.subTitle}>Suroviny</Text>
         {route.params?.ingredients.map((ingredient) => (
-          <Text style={styles.ingredient} key={ingredient}>{ingredient}</Text>
+          <Text style={styles.ingredient} key={ingredient}>
+            {ingredient}
+          </Text>
         ))}
       </View>
       <View style={styles.ingredientsContainer}>
         <Text style={styles.subTitle}>Postup</Text>
         {route.params?.steps.map((step, index) => (
-          <Text style={styles.ingredient} key={step}>{index+1}. {step}</Text>
+          <Text style={styles.ingredient} key={step}>
+            {index + 1}. {step}
+          </Text>
         ))}
       </View>
     </ScrollView>
@@ -37,9 +50,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   image: {
-    width: "100%",
+    width: "103%",
     height: 300,
-    marginVertical: 10,
+    marginBottom: 10,
+    marginHorizontal: -5
   },
   title: {
     fontSize: 24,
@@ -54,7 +68,7 @@ const styles = StyleSheet.create({
   },
   ingredientsContainer: {
     marginHorizontal: 30,
-    marginBottom: 10
+    marginBottom: 10,
   },
   subTitle: {
     fontSize: 20,

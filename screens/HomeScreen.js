@@ -13,7 +13,7 @@ const HomeScreen = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Rychlo, zdravo a chutne</Text>
+        <Text style={styles.title}>RÝCHLO, ZDRAVO A CHUTNE</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -21,12 +21,12 @@ const HomeScreen = (props) => {
           onPress={() =>
             props.navigation.navigate({
               name: "Meals",
-              params: { group: "salt" },
+              params: { group: "salt", title: "Slané jedlá" },
             })
           }
         >
           <View style={styles.button}>
-            <Text style={styles.buttonText}>slane jedla</Text>
+            <Text style={styles.buttonText}>SLANÉ</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -34,12 +34,12 @@ const HomeScreen = (props) => {
           onPress={() =>
             props.navigation.navigate({
               name: "Meals",
-              params: { group: "sweet" },
+              params: { group: "sweet", title: "Sladké jedlá" },
             })
           }
         >
           <View style={styles.button}>
-            <Text style={styles.buttonText}>sladke jedla</Text>
+            <Text style={styles.buttonText}>SLADKÉ</Text>
           </View>
         </TouchableOpacity>
       </View>

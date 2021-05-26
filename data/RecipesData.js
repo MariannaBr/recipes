@@ -5,7 +5,7 @@ export const MEALS = [
     "m1",
     [],
     "Tekvicovo-batátový krém",
-    "lahky",
+    "ľahký",
     require("../assets/mealsPics/Tekvicovo-batatovy-krem.jpg"),
     "40 min",
     [
@@ -37,7 +37,7 @@ export const MEALS = [
     "m2",
     [],
     "Losos na masle s batátovo-hráškovým pyré",
-    "stredne narocny",
+    "stredne náročný",
     require("../assets/mealsPics/Losos-na-masle-s-batatovo-hraskovym-pyre.jpg"),
     "90 min",
     [
@@ -70,7 +70,7 @@ export const MEALS = [
     "m3",
     [],
     "Krémové syrové rizoto",
-    "stredne narocny",
+    "stredne náročný",
     require("../assets/mealsPics/Kremove-syrove-rizoto.jpg"),
     "70 min",
     [
@@ -108,7 +108,7 @@ export const MEALS = [
     "m4",
     [],
     "Brokolicové muffiny s mozarellou",
-    "lahky",
+    "ľahký",
     require("../assets/mealsPics/Brokolicove-muffiny-s-mozarellou.jpg"),
     "30 min",
     [
@@ -143,7 +143,7 @@ export const MEALS = [
     "m5",
     [],
     "Ricottová torta s banánom",
-    "lahky",
+    "ľahký",
     require("../assets/mealsPics/Ricottova-torta-s-bananom.jpg"),
     "35 min",
     [
@@ -178,7 +178,7 @@ export const MEALS = [
     "m6",
     [],
     "Tvarohovo-pudingová torta plná ovocia",
-    "lahky",
+    "ľahký",
     require("../assets/mealsPics/Tvarohovo-pudingova-torta-plna-ovocia.jpg"),
     "50 min",
     [
@@ -216,7 +216,7 @@ export const MEALS = [
     "m7",
     [],
     "Cheesecake tiramisu",
-    "lahky",
+    "ľahký",
     require("../assets/mealsPics/Cheesecake-tiramisu.jpg"),
     "70 min",
     [
@@ -250,7 +250,7 @@ export const MEALS = [
     "m8",
     [],
     "Chia-proteínový puding",
-    "lahky",
+    "ľahký",
     require("../assets/mealsPics/chia_proteinovy_puding.jpg"),
     "15 min",
     [
