@@ -1,6 +1,6 @@
 import React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons"
-import { MaterialIcons } from '@expo/vector-icons';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "../constants/Colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -8,6 +8,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "../screens/HomeScreen";
 import MealsScreen from "../screens/MealsScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
+import FavoritesScreen from "../screens/FavoritesScreen"
 
 const MealsStack = createStackNavigator();
 
@@ -28,9 +29,12 @@ export const MealsNavigator = () => {
       <MealsStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: "LRfit", headerTitleStyle: {
-          alignSelf: "center"
-        } }}
+        options={{
+          title: "LRfit",
+          headerTitleStyle: {
+            alignSelf: "center",
+          },
+        }}
       />
       <MealsStack.Screen
         name="Meals"
@@ -51,7 +55,7 @@ const FavoriteStack = createStackNavigator();
 export const FavoriteNavigator = () => {
   return (
     <FavoriteStack.Navigator
-      initialRouteName="Favorites"
+      initialRouteName="FavoritesMeals"
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.secondaryColor,
@@ -63,9 +67,14 @@ export const FavoriteNavigator = () => {
       }}
     >
       <FavoriteStack.Screen
-        name="Meals"
-        component={MealsScreen}
-        options={({ route }) => ({ title: route.params.title })}
+        name="FavoritesMeals"
+        component={FavoritesScreen}
+        options={{
+          title: "Obľúbené recepty",
+          headerTitleStyle: {
+            alignSelf: "center",
+          },
+        }}
       />
       <FavoriteStack.Screen name="MealDetail" component={MealDetailScreen} />
     </FavoriteStack.Navigator>
@@ -75,33 +84,34 @@ export const FavoriteNavigator = () => {
 const Tabs = createBottomTabNavigator();
 
 export const BottomTabNavigator = () => {
-
   return (
-    <Tabs.Navigator screenOptions={({route}) => ({
-      tabBarIcon: ({focused}) => {
-        let iconName
-        let colorName
+    <Tabs.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => {
+          let iconName;
+          let colorName;
 
-        if (route.name === "Recipes") {
-          iconName = "food-bank"
-          colorName = focused ? Colors.secondaryColor : "gray"
-        } else if (route.name === "Favorites") {
-          iconName = "favorite"
-          colorName = focused ? Colors.secondaryColor : "gray"
-        }
-        return <MaterialIcons name={iconName} size={34} color={colorName} />
-      }
-    })
-    } tabBarOptions={{
-      activeTintColor: Colors.secondaryColor,
-      inactiveTintColor: "gray"
-    }}>
+          if (route.name === "Recipes") {
+            iconName = "food-bank";
+            colorName = focused ? Colors.secondaryColor : "gray";
+          } else if (route.name === "Favorites") {
+            iconName = "favorite";
+            colorName = focused ? Colors.secondaryColor : "gray";
+          }
+          return <MaterialIcons name={iconName} size={34} color={colorName} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: Colors.secondaryColor,
+        inactiveTintColor: "gray",
+      }}
+    >
       <Tabs.Screen
         name="Recipes"
         component={MealsNavigator}
         options={{
           tabBarLabel: "Recepty",
-          fontWeight: "bold"
+          fontWeight: "bold",
         }}
       />
       <Tabs.Screen

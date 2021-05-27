@@ -1,13 +1,37 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
+import React, { useState, useCallback, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { Colors } from "../constants/Colors";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
+import { setFavorite } from "../store/actions/mealsActions";
+import { useSelector, useDispatch } from "react-redux";
 
-const MealDetailScreen = ({ route }) => {
+const MealDetailScreen = ({ route, navigation }) => {
+  const [isFavorite, SetIsFavorite] = useState(false);
 
-  const [isFavorite, SetIsFavorite] = useState(false)
-  let iconName
-  iconName = isFavorite ? "favorite" : "favorite-border"
+  const isCurrentFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === route.params.id)
+  );
+
+  const dispatch = useDispatch();
+
+  const setFavoriteHandler = () => {
+    SetIsFavorite(!isFavorite);
+    dispatch(setFavorite(route.params.id));
+  };
+
+  useEffect(() => {
+    navigation.setParams({ isFav: isCurrentFavorite });
+  }, [isCurrentFavorite]);
+
+  let iconName;
+  iconName = route.params?.isFav ? "favorite" : "favorite-border";
 
   return (
     <ScrollView>
@@ -18,8 +42,12 @@ const MealDetailScreen = ({ route }) => {
       <View style={styles.detialsContainer}>
         <Text>{route.params?.duration}</Text>
         <Text>{route.params?.complexity}</Text>
-        <TouchableOpacity onPress={() => SetIsFavorite(!isFavorite)}>
-          <MaterialIcons name={iconName} size={30} color={Colors.secondaryColor} />
+        <TouchableOpacity onPress={setFavoriteHandler}>
+          <MaterialIcons
+            name={iconName}
+            size={30}
+            color={Colors.secondaryColor}
+          />
         </TouchableOpacity>
       </View>
       <View style={styles.ingredientsContainer}>
@@ -53,7 +81,7 @@ const styles = StyleSheet.create({
     width: "103%",
     height: 300,
     marginBottom: 10,
-    marginHorizontal: -5
+    marginHorizontal: -5,
   },
   title: {
     fontSize: 24,
