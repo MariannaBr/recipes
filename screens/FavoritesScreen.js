@@ -9,7 +9,10 @@ const FavoritesScreen = (props) => {
 
   const { route, navigation } = props
 
-  const MealsToShow = useSelector(state => state.meals.favoriteMeals)
+  const favoriteMeals = useSelector(state => state.meals.favoriteMeals)
+  const filteredMeals = useSelector(state => state.meals.filteredMeals)
+
+  const MealsToShow = favoriteMeals.filter((meal) => filteredMeals.includes(meal))
 
   if (MealsToShow.length === 0 || !MealsToShow) {
     return (
