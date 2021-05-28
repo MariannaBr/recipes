@@ -3,16 +3,18 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { Colors } from "../constants/Colors";
 import MealList from "../Components/MealList";
 import Filters from "../Components/FilterSwitch";
-import { MEALS } from "../data/RecipesData";
+import { useSelector } from "react-redux"
 
 const MealsScreen = (props) => {
 
   const { route, navigation } = props
 
+  const filteredMeals = useSelector(state => state.meals.filteredMeals)
+
   const MealsToShow =
     route.params?.group === "salt"
-      ? MEALS.filter((meal) => meal.isSalt == true)
-      : MEALS.filter((meal) => meal.isSalt == false);
+      ? filteredMeals.filter((meal) => meal.isSalt == true)
+      : filteredMeals.filter((meal) => meal.isSalt == false);
 
   return (
     <View style={styles.screen}>

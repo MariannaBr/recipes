@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { View, Text, StyleSheet, Button, Switch, Platform, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Switch, Platform } from "react-native";
+import { useDispatch } from "react-redux";
 import { Colors } from "../constants/Colors";
+import { setFilters } from "../store/actions/mealsActions";
 
 const FilterSwitch = (props) => {
   return (
@@ -22,6 +24,8 @@ const Filters = ({ navigation }) => {
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
 
+  const dispatch = useDispatch();
+
   const saveFilters = useCallback(() => {
     const appliedFilters = {
       glutenFree: isGlutenFree,
@@ -29,11 +33,14 @@ const Filters = ({ navigation }) => {
       vegetarian: isVegetarian,
       lactoseFree: isLactoseFree,
     };
-  }, [isGlutenFree, isVegan, isVegetarian, isLactoseFree]);
+
+    console.log("applied filters", appliedFilters);
+    dispatch(setFilters(appliedFilters));
+  }, [isGlutenFree, isVegan, isVegetarian, isLactoseFree, dispatch]);
 
   useEffect(() => {
-    navigation.setParams({ save: saveFilters });
-  }, [saveFilters]);
+    saveFilters();
+  }, [isGlutenFree, isVegan, isVegetarian, isLactoseFree]);
 
   return (
     <View style={styles.screen}>
@@ -68,12 +75,12 @@ const Filters = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   screen: {
-    height: 220
+    height: 220,
   },
   switchContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 5
+    paddingVertical: 5,
   },
   textContainer: {
     justifyContent: "center",
